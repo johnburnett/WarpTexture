@@ -1,0 +1,127 @@
+<html>
+<head>
+	<title>WarpTexture</title>
+	<style type="text/css">
+	<--
+		hr { color:rgb(140,140,140); height:1px; }
+		img { border-style:solid; border-width:1px; border-color:rgb(0,0,0); }
+		code { color:rgb(0,0,220); }
+		p.indent { padding:0pt 0pt 0pt 20pt }
+		dl.indent { padding:0pt 0pt 0pt 20pt }
+		dt { font-weight:bold }
+		dd { padding:3pt; }
+		li { padding:3pt; }
+		li.compact { padding:0pt; }
+		body { color:rgb(0,0,0); background-color:rgb(220,220,220); font-family:"Veranda","Arial","sans-serif"; font-size:10pt; }
+		A { text-decoration:none; }
+		A:link { color:rgb(0,0,150); }
+		A:visited { color:rgb(127,0,0) }
+		A:hover { background-color:rgb(255,255,0); }
+		.TPtext { color: #000000; }
+		.TPkeyword1 { color: #0000FF; }
+		.TPkeyword5 { color: #000080; }
+		.TPcomment { color: #008000; }
+		.TPnumber { color: #000000; }
+		.TPbracket { color: #FF0000; }
+		.TPoperator { color: #000000; }
+		.block {
+			background-color: rgb(225,225,225);
+			padding-top: 10px;
+			padding-bottom: 10px;
+			padding-left: 10px;
+			padding-right: 10px;
+			border: 1px solid rgb(134,134,134);
+		}
+		.keyword { color:rgb(0,0,180); }
+	-->
+	</style>
+</head>
+
+<body>
+
+<a name="top"></a>
+<h1>WarpTexture</h1>
+<ul>
+	<li class="compact"><a href="#parameters">Parameters</a></li>
+	<li class="compact"><a href="#tips">General Tips</a></li>
+	<li class="compact"><a href="#history">History</a></li>
+	<LI CLASS="compact"><A HREF="#contact">Contact / Disclaimer / License</A></LI>
+</ul>
+
+<hr>
+<div align="center">
+	<p>Distorts one texture with another.</p>
+	<p><img src="./images/WarpMonkeySample.jpg" ALT="Sample Image"></p>
+</div>
+
+<a name="parameters"></a>
+<hr>
+<h3>Parameters:</h3>
+<dl>
+<dt class="keyword">Target texture</dt>
+<dd>
+	This is the texture that you want to distort.
+</dd>
+<dt class="keyword">Warp texture</dt>
+<dd>
+	This is the texture that does the distorting.  Each RGB component of the warp texture will distort the corresponding UVW/XYZ value of the Target texture (ie. the warp red will push the Target texture along U/X).
+	<p>Note that the Warp texture values can go over one and less than zero by using the Output rollout in various textures.  Negative values will push in the opposite direction of positive values.
+</dd>
+<dt class="keyword">Warp Scale</dt>
+<dd>
+	This is used to scale the values of the warp texture.
+	<p>The "meaning" of this parameter changes depending on whether the Target texture is using UVW coordinates or XYZ coordinates.
+	<ul>
+		<li>When using UVW coordinates, the Warp Scale should probably be in the 0.0-&gt;1.0 range.</li>
+		<li>When using XYZ coordinates, you will probably have to set the Warp Scale to a much larger value since it now represents displacement in world (or object) space.</li>
+	</ul>
+</dd>
+</dl>
+<p><a href="#top">Back To Top...</a></p>
+
+<a name="tips"></a>
+<hr>
+<h3>General Tips:</h3>
+<ul>
+	<li>Heavily warped textures will be prone to aliasing.  Use supersampling to work around this.</li>
+	<li>Render the sample scene as an animation.</li>
+</ul>
+<p><a href="#top">Back To Top...</a></p>
+
+<a name="history"></a>
+<hr>
+<h3>History:</h3>
+<pre>
+1999.06.13 - Created.
+2000.02.09 - Re-written.
+2004.02.11 - Re-written again for the last damn time.
+2004.02.23 - Few last touches for real release.
+2007.02.20 - Updating for public 3dsmax9 release.
+2008.04.05 - Updated to 64 bit and 3dsmax 2008.  Thanks to <a href="http://www.maxplugins.de/">David Baker</a> for the help.
+</pre>
+<P><A HREF="#top">Back To Top...</A></P>
+
+<A NAME="contact"></A>
+<HR>
+<H3>Contact / Disclaimer / License:</H3>
+Bug reports/comments/suggestions: <A HREF="http://www.footools.com/">http://www.footools.com/</A>. If you use this software on a project, sending an e-mail/postcard indicating such would be appreciated.<BR>
+<PRE>
+This software is provided 'as-is', without any express or implied warranty. In no
+event will the author be held liable for any damages arising from the use of this
+software.
+
+Permission is granted to anyone to use this software, subject to the following
+restrictions:
+
+1. The origin of this software must NOT be misrepresented; you must not claim that
+   you wrote the original software.
+
+2. This software may NOT be bundled with any other product or included in any
+   compilation without the express permission of the author.
+
+3. This notice must NOT be removed or altered from any distribution of this
+   software.
+</PRE>
+<P><A HREF="#top">Back To Top...</A></P>
+</BODY>
+</HTML>
