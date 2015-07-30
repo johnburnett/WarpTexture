@@ -54,6 +54,9 @@ static WarpTextureClassDesc warpTextureClassDesc;
 ClassDesc2* GetWarpTextureClassDesc() { return &warpTextureClassDesc; }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+#if MAX_VERSION_MAJOR < 15	//Max 2013
+ #define p_end end
+#endif
 
 static ParamBlockDesc2 warpTexturePBlockDesc
 (
@@ -62,25 +65,25 @@ static ParamBlockDesc2 warpTexturePBlockDesc
 
 	kWarp_tex_out, _T("output"), TYPE_REFTARG, P_OWNERS_REF, IDS_OUTPUT,
 		p_refno,	kRef_tex_out,
-		end,
+		p_end,
 
 	kWarp_target_texture, _T("targetTexture"), TYPE_TEXMAP, P_SUBTEX, IDS_TARGET_TEXTURE,
 		p_subtexno,	0,
 		p_ui,		TYPE_TEXMAPBUTTON, IDC_TARGET_TEXTURE,
-		end,
+		p_end,
 
 	kWarp_warp_texture, _T("warpTexture"), TYPE_TEXMAP, P_SUBTEX, IDS_WARP_TEXTURE,
 		p_subtexno,	1,
 		p_ui,		TYPE_TEXMAPBUTTON, IDC_WARP_TEXTURE,
-		end,
+		p_end,
 
 	kWarp_warp_amount, _T("warpAmount"), TYPE_FLOAT, P_ANIMATABLE, IDS_WARP_AMOUNT,
 		p_range,	-9999999.0f, 9999999.0f,
 		p_default,	1.0f,
 		p_ui,		TYPE_SPINNER, EDITTYPE_FLOAT, IDC_WARP_AMOUNT_EDIT, IDC_WARP_AMOUNT_SPIN, SPIN_AUTOSCALE,
-		end,
+		p_end,
 
-	end
+	p_end
 );
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -228,7 +231,11 @@ void WarpTexture::SetReference(int i, RefTargetHandle refTarg)
 	}
 }
 
+#if MAX_VERSION_MAJOR < 17 //Max 2015
 RefResult WarpTexture::NotifyRefChanged(Interval changeInt, RefTargetHandle hTarget, PartID& partID, RefMessage message)
+#else
+RefResult WarpTexture::NotifyRefChanged(const Interval& changeInt, RefTargetHandle hTarget, PartID& partID, RefMessage message, BOOL propagate)
+#endif
 {
 	switch (message)
 	{
